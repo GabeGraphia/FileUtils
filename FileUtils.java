@@ -1,11 +1,11 @@
 import java.io.*;
 
-public class file {
-    public static String readFile(String fileName) throws IOException {
+public class FileUtils {
+    public static String readFile(File fileName) throws IOException {
         StringBuilder str = new StringBuilder();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         while (br.ready()) {
-            str.append(br.read());
+            str.append((char) br.read());
         }
         br.close();
         return str.toString();
