@@ -1,13 +1,19 @@
 import java.io.*;
 
 public class FileUtils {
-    public static String readFile(File fileName) throws IOException {
+    public static String readFile(File fileName) {
+
         StringBuilder str = new StringBuilder();
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        while (br.ready()) {
-            str.append((char) br.read());
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            while (br.ready()) {
+                str.append((char) br.read());
+            }
+            br.close();
+
+        } catch (Exception E) {
+            System.out.println("bruh:\n" + E);
         }
-        br.close();
         return str.toString();
     }
 
@@ -35,15 +41,35 @@ public class FileUtils {
         return true;
     }
 
-    public static int countCharacters(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+    public static int countCharacters(String fileName) {
         int characterCount = 0;
-        while (br.ready()) {
-            br.read();
-            characterCount++;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            while (br.ready()) {
+                br.read();
+                characterCount++;
+            }
+            br.close();
+
+        } catch (Exception E) {
+            System.out.println("bruh:\n" + E);
         }
-        br.close();
         return characterCount;
+    }
+
+    public static void main(String[] args) {
+        String text = "123456789";
+        String fileName = "NamedFile";
+        // test writeFile
+        writeFile(fileName, text);
+        // test readFile
+        File testFile = new File(
+                "c:/Users/benja/Documents/VSCode/HTopics Repos&Notes/HTopics Day 002/HTopicsDay002/NamedFile.txt");
+        System.out.println(readFile(testFile));
+        // test countCharacters
+        System.out.println(countCharacters(fileName));
+        // make sure we finished the tester
+        System.out.println("end tester");
     }
 
 }
