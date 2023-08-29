@@ -1,19 +1,16 @@
 import java.io.*;
 
 public class FileUtils {
-    public static String readFile(File fileName) {
+    public static String readFile(File fileName) throws IOException {
 
         StringBuilder str = new StringBuilder();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            while (br.ready()) {
-                str.append((char) br.read());
-            }
-            br.close();
 
-        } catch (Exception E) {
-            System.out.println("bruh:\n" + E);
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        while (br.ready()) {
+            str.append((char) br.read());
         }
+        br.close();
+
         return str.toString();
     }
 
@@ -41,25 +38,22 @@ public class FileUtils {
         return true;
     }
 
-    public static int countCharacters(String fileName) {
+    public static int countCharacters(String fileName) throws IOException {
         int characterCount = 0;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            while (br.ready()) {
-                br.read();
-                characterCount++;
-            }
-            br.close();
 
-        } catch (Exception E) {
-            System.out.println("bruh:\n" + E);
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        while (br.ready()) {
+            br.read();
+            characterCount++;
         }
+        br.close();
+
         return characterCount;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String text = "123456789";
-        String fileName = "NamedFile";
+        String fileName = "NamedFile.txt";
         // test writeFile
         writeFile(fileName, text);
         // test readFile
