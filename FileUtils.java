@@ -34,4 +34,16 @@ public class FileUtils {
         }
         return true;
     }
+
+    public static int countCharacters(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        int characterCount = 0;
+        while (br.ready()) {
+            br.read();
+            characterCount++;
+        }
+        br.close();
+        return characterCount;
+    }
+
 }
