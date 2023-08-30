@@ -58,7 +58,7 @@ public class FileUtils {
         writeFile(fileName, text);
         // test readFile
         File testFile = new File(
-                "c:/Users/benja/Documents/VSCode/HTopics Repos&Notes/HTopics Day 002/HTopicsDay002/NamedFile.txt");
+                "NamedFile.txt");
         System.out.println(readFile(testFile));
         // test countCharacters
         System.out.println(countCharacters(fileName));
